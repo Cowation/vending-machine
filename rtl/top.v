@@ -26,7 +26,7 @@ module top(
     
     datapath vending_datapath(
         .clk (clk),
-        .I (I),
+        .I (I[1:0]),
         .clear (clear),
         .select_load (select_load),
         .coins_load (coins_load),
