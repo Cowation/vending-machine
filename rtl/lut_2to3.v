@@ -1,6 +1,6 @@
 module lut_2to3(
     input [1:0] sel,
-    output [2:0] out
+    output reg [2:0] out
 );
     always @(*) begin
         case (sel)
