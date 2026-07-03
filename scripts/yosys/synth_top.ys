@@ -1,0 +1,35 @@
+# Run from the repository root:
+#   yosys -s scripts/yosys/synth_top.ys
+
+read_verilog rtl/controller.v
+read_verilog rtl/datapath.v
+read_verilog rtl/lut_2to3.v
+read_verilog rtl/top.v
+
+hierarchy -check -top top
+flatten
+
+proc
+opt
+fsm
+opt
+memory
+opt
+
+dffunmap
+opt
+techmap
+opt
+
+dfflibmap -liberty lib/knoddy_std/liberty/knoddy_std.lib
+abc -exe yosys-abc -liberty lib/knoddy_std/liberty/knoddy_std.lib
+
+read_liberty -lib lib/knoddy_std/liberty/knoddy_std.lib
+delete t:$scopeinfo
+opt_clean
+check
+stat -liberty lib/knoddy_std/liberty/knoddy_std.lib
+
+select -module top
+write_verilog -noattr -noexpr -simple-lhs -selected build/yosys/top_gate.v
+select -clear
