@@ -1,0 +1,26 @@
+# Vivado / xsim generated junk
+build/
+.Xil/
+*.jou
+*.log
+*.str
+*.wdb
+*.wcfg
+xsim.dir/
+
+# Vivado project-mode generated directories
+*.xpr
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.gen/
+*.srcs/
+
+# Optional generated synthesis outputs
+*.dcp
+*.bit
+*.ltx
+*.rpt
+*.vcd
