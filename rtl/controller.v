@@ -27,7 +27,7 @@ module controller(
     assign coins_load = s[1] & s[0];
     assign output_on = s[2];
     
-    always @(posedge clk or posedge grst) begin
+    always @(posedge clk) begin
         if (grst) begin
             s <= 3'b000;
         end else begin
