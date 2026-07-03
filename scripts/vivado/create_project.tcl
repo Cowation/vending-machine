@@ -12,7 +12,7 @@ file mkdir $build_dir
 create_project $proj_name $build_dir -part $part_name -force
 
 set_property target_language Verilog [current_project]
-set_property simulator_language Mixed [current_project]
+set_property simulator_language Verilog [current_project]
 
 proc add_filelist {fileset filelist_path} {
     set filelist_dir [file dirname [file normalize $filelist_path]]
@@ -30,9 +30,9 @@ proc add_filelist {fileset filelist_path} {
             continue
         }
 
-        # Skip include header lines here if you list .svh files.
-        # Vivado does not compile .svh directly; it includes them from source files.
-        if {[file extension $line] eq ".svh"} {
+        # Skip include header lines here if you list .vh files.
+        # Vivado does not compile .vh directly; it includes them from source files.
+        if {[file extension $line] eq ".vh"} {
             continue
         }
 

@@ -1,6 +1,6 @@
 # Vending Machine
 
-Basic Vivado project scaffold for a Verilog/SystemVerilog vending machine design.
+Basic Vivado project scaffold for a Verilog vending machine design.
 
 ## Setup
 
@@ -38,8 +38,8 @@ After adding a new source file, add its path to the matching file list:
 Paths in the file lists are relative to the file list location. For example:
 
 ```text
-../rtl/top.sv
-../tb/top_tb.sv
+../rtl/top.v
+../tb/top_tb.v
 ```
 
 The Vivado setup script currently expects the design top module to be `top` and the simulation top module to be `top_tb`. If those names change, update `scripts/vivado/create_project.tcl`.
