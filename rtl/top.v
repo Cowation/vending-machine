@@ -13,6 +13,7 @@ module top(
     
     wire coins_lt_price;
     
+    (* keep_hierarchy = "yes" *)
     controller vending_controller(
         .clk (clk),
         .grst (grst),
@@ -24,6 +25,7 @@ module top(
         .output_on (output_on)
     );
     
+    (* keep_hierarchy = "yes" *)
     datapath vending_datapath(
         .clk (clk),
         .I (I[1:0]),
