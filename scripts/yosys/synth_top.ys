@@ -44,5 +44,4 @@ write_verilog -noattr -noexpr -simple-lhs -selected build/yosys/top_gate.datapat
 write_file build/yosys/top_gate.v build/yosys/top_gate.top.v
 write_file -a build/yosys/top_gate.v build/yosys/top_gate.controller.v
 write_file -a build/yosys/top_gate.v build/yosys/top_gate.datapath.v
-exec -q -expect-return 0 -- rm -f build/yosys/top_gate.top.v build/yosys/top_gate.controller.v build/yosys/top_gate.datapath.v
 select -clear
