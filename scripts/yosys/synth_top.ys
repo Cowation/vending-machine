@@ -30,18 +30,6 @@ opt_clean
 check
 stat -liberty lib/knoddy_std/liberty/knoddy_std.lib
 
-# Preserve only the hierarchy boundary directly under top. The top-level
-# controller/datapath instances carry keep_hierarchy attributes, so flatten
-# leaves synthesized module definitions for them while folding deeper cells
-# such as datapath.price_lut into those definitions.
-select top
-write_verilog -noattr -noexpr -simple-lhs -selected build/yosys/top_gate.top.v
-select controller
-write_verilog -noattr -noexpr -simple-lhs -selected build/yosys/top_gate.controller.v
-select datapath
-write_verilog -noattr -noexpr -simple-lhs -selected build/yosys/top_gate.datapath.v
-
-write_file build/yosys/top_gate.v build/yosys/top_gate.top.v
-write_file -a build/yosys/top_gate.v build/yosys/top_gate.controller.v
-write_file -a build/yosys/top_gate.v build/yosys/top_gate.datapath.v
+select -module top
+write_verilog -noattr -noexpr -simple-lhs -selected build/yosys/top_gate.v
 select -clear
