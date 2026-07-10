@@ -28,6 +28,15 @@ module NOR2_X1 (
     assign Y = ~(A | B);
 endmodule
 
+module MUX2_X1 (
+    input A,
+    input B,
+    input S,
+    output Y
+);
+    assign Y = S ? B : A;
+endmodule
+
 module DFF_X1 (
     input D,
     input CLK,

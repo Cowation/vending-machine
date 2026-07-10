@@ -141,6 +141,56 @@ library(knoddy_std) {
         }
     }
 
+    cell(MUX2_X1) {
+        area : 3.0;
+        cell_leakage_power : 0.3;
+
+        pin(A) {
+            direction : input;
+            capacitance : 0.015;
+        }
+
+        pin(B) {
+            direction : input;
+            capacitance : 0.015;
+        }
+
+        pin(S) {
+            direction : input;
+            capacitance : 0.020;
+        }
+
+        pin(Y) {
+            direction : output;
+            function : "(!S & A) | (S & B)";
+            max_capacitance : 0.25;
+            timing() {
+                related_pin : "A";
+                timing_sense : positive_unate;
+                cell_rise(delay_template_1x1) { values("0.07"); }
+                cell_fall(delay_template_1x1) { values("0.06"); }
+                rise_transition(delay_template_1x1) { values("0.02"); }
+                fall_transition(delay_template_1x1) { values("0.02"); }
+            }
+            timing() {
+                related_pin : "B";
+                timing_sense : positive_unate;
+                cell_rise(delay_template_1x1) { values("0.07"); }
+                cell_fall(delay_template_1x1) { values("0.06"); }
+                rise_transition(delay_template_1x1) { values("0.02"); }
+                fall_transition(delay_template_1x1) { values("0.02"); }
+            }
+            timing() {
+                related_pin : "S";
+                timing_sense : non_unate;
+                cell_rise(delay_template_1x1) { values("0.08"); }
+                cell_fall(delay_template_1x1) { values("0.08"); }
+                rise_transition(delay_template_1x1) { values("0.02"); }
+                fall_transition(delay_template_1x1) { values("0.02"); }
+            }
+        }
+    }
+
     cell(DFF_X1) {
         area : 4.0;
         cell_leakage_power : 0.4;
