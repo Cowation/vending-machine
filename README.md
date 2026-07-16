@@ -62,7 +62,8 @@ The project includes a small dummy standard-cell library under
 `lib/knoddy_std/` for Yosys experiments:
 
 - `lib/knoddy_std/verilog/knoddy_std.v` contains behavioral Verilog models for
-  `INV_X1`, `BUF_X1`, `NAND2_X1`, `NOR2_X1`, and `DFF_X1`.
+  `INV_X1`, `BUF_X1`, `AND2_X1`, `AND3_X1`, `AND4_X1`, `OR2_X1`, `NAND2_X1`,
+  `NOR2_X1`, `MUX2_X1`, and `DFF_X1`.
 - `lib/knoddy_std/liberty/knoddy_std.lib` contains rough Liberty timing, area,
   and pin definitions for those same cells.
 
@@ -95,7 +96,9 @@ This runs `scripts/yosys/synth_top.ys`, which:
 
 - reads the RTL files under `rtl/`
 - uses `top` as the design top
-- flattens the design
+- preserves the design hierarchy
+- extracts the logic trees derived from `controller.v` into matching
+  `knoddy_std` gates before general logic optimization
 - maps sequential logic to `DFF_X1`
 - maps combinational logic through ABC using `knoddy_std.lib`
 - writes the synthesized gate-level netlist to `build/yosys/top_gate.v`

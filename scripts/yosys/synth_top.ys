@@ -13,6 +13,12 @@ read_verilog rtl/top.v
 hierarchy -check -top top
 
 proc
+
+# Preserve the controller equations as written by extracting their RTL-derived
+# operator trees into the matching standard cells before logic optimization.
+opt_merge controller
+extract -map lib/knoddy_std/verilog/knoddy_std.v controller
+
 opt
 fsm
 opt
