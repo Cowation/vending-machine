@@ -4,10 +4,13 @@
 read_verilog rtl/controller.v
 read_verilog rtl/datapath.v
 read_verilog rtl/lut_2to3.v
+read_verilog rtl/reg2.v
+read_verilog rtl/reg3.v
+read_verilog rtl/lt3.v
+read_verilog rtl/add3.v
 read_verilog rtl/top.v
 
 hierarchy -check -top top
-flatten
 
 proc
 opt
@@ -30,6 +33,4 @@ opt_clean
 check
 stat -liberty lib/knoddy_std/liberty/knoddy_std.lib
 
-select -module top
-write_verilog -noattr -noexpr -simple-lhs -selected build/yosys/top_gate.v
-select -clear
+write_verilog -noattr -noexpr -simple-lhs build/yosys/top_gate.v
