@@ -60,6 +60,15 @@ module NAND2_X1 (
     assign Y = ~(A & B);
 endmodule
 
+module NAND3_X1 (
+    input A,
+    input B,
+    input C,
+    output Y
+);
+    assign Y = ~(A & B & C);
+endmodule
+
 module NOR2_X1 (
     input A,
     input B,
