@@ -12,6 +12,10 @@ read_verilog rtl/top.v
 
 hierarchy -check -top top
 
+# Keep every RTL module boundary while allowing the synthesis passes below to
+# optimize and technology-map the logic inside each module independently.
+setattr -mod -set keep_hierarchy 1 controller datapath lut_2to3 reg2 reg3 lt3 add3
+
 proc
 
 # Preserve the controller equations as written by extracting their RTL-derived

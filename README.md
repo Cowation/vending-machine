@@ -96,7 +96,8 @@ This runs `scripts/yosys/synth_top.ys`, which:
 
 - reads the RTL files under `rtl/`
 - uses `top` as the design top
-- preserves the design hierarchy
+- preserves the complete module hierarchy, including all modules instantiated
+  by `datapath`, while synthesizing the logic inside each module
 - extracts the logic trees derived from `controller.v` into matching
   `knoddy_std` gates before general logic optimization
 - maps sequential logic to `DFF_X1`

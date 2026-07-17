@@ -15,9 +15,9 @@ module datapath(
     
     output [1:0] O
 );
-    reg [1:0] selection;
-    reg [2:0] coins;
-    
+    wire [1:0] selection;
+    wire [2:0] coins;
+    wire [2:0] next_coins;
     wire [2:0] price;
     
     assign O = output_on ? selection : 2'b00;
@@ -26,21 +26,32 @@ module datapath(
         .sel (selection),
         .out (price)
     );
-    
-    assign coins_lt_price = coins < price;
-    
-    always @(posedge clk) begin
-        if (clear) begin
-            selection <= 2'b00;
-            coins <= 3'b000;
-        end else begin
-            if (select_load) begin
-                selection <= I;
-            end
-            
-            if (coins_load) begin
-                coins <= coins + 3'b001;
-            end
-        end
-    end
+
+    reg2 selection_reg (
+        .D (I),
+        .load (select_load),
+        .clear (clear),
+        .clk (clk),
+        .Q (selection)
+    );
+
+    add3 coins_incrementer (
+        .A (coins),
+        .B (3'b001),
+        .sum (next_coins)
+    );
+
+    reg3 coins_reg (
+        .D (next_coins),
+        .load (coins_load),
+        .clear (clear),
+        .clk (clk),
+        .Q (coins)
+    );
+
+    lt3 coins_price_comparator (
+        .A (coins),
+        .B (price),
+        .lt (coins_lt_price)
+    );
 endmodule
